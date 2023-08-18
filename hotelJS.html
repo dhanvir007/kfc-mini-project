@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Sunshine Hotel & Resorts</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="../public/images/list-imagefav-icon.gif">
+    <style>
+        .nav-header ul {
+            list-style: none;
+
+        }
+
+        .nav-header ul li a {
+
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-header ul li a:hover {
+            background-color: red;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+        }
+
+        .section-1 {
+            display: grid;
+            grid-template-columns: 6fr 6fr;
+        }
+
+        /* section  */
+    </style>
+    <script type="text/javascript">
+        function openclick() {
+            document.getElementById("form").style.display = "block";
+        }
+
+
+        function registerclick(){
+
+            document.getElementById("lblname").innerHTML =document.getElementById("txtname").value;
+            document.getElementById("lbldate").innerHTML = document.getElementById("txtdate").value;
+            document.getElementById("lbldays").innerHTML =document.getElementById("txtdays").value;
+            document.getElementById("lblpersons").innerHTML= document.getElementById("txtpersons").value;
+
+            var Selectedroom ="";
+            var roomcost=0;
+
+            var deluxradio =document.getElementById("txtdelux");
+            var suiteradio = document.getElementById("txtsuite");
+
+            if(deluxradio.checked){
+                selectedroom = deluxradio.value;
+                roomcost= 2500;
+            }
+            if(suiteradio.checked){
+                selectedroom = suiteradio.value;
+                roomcost=4000;
+            }
+
+
+            var selectedamenities = "";
+            var amenitiescost= 0;
+
+            var accheckbox = document.getElementById("txtac");
+            var lockercheckbox =document.getElementById("txtlocker");
+
+            if(accheckbox.checked){
+                selectedamenities += accheckbox.value + "<br>";
+                amenitiescost = 1000;
+                roomcost = roomcost + amenitiescost
+            }
+            if(lockercheckbox.checked){
+                selectedamenities += lockercheckbox.value +"<br>";
+                amenitiescost = 300;
+                roomcost= roomcost + amenitiescost;
+                
+            }
+
+           
+            var personcharge = document.getElementById("txtpersons");
+            var chargeday = document.getElementById("txtdays");
+             
+            if(personcharge>=2 ){
+            roomcost = roomcost + ((personcharge-2)*1000);
+
+            }else{
+                roomcost = roomcost + ((1000)* 1);
+            }
+
+            
+
+         
+
+
+
+
+
+            document.getElementById("lblroom").innerHTML = selectedroom;
+            document.getElementById("lblamenities").innerHTML = selectedamenities;
+            document.getElementById("lbladvance").innerHTML = "&#8377;"+ document.getElementById("txtadvance").value;
+            document.getElementById("lbltotal").innerHTML =   roomcost + + document.getElementById("txtadvance").value ;
+            document.getElementById("lblremain").innerHTML = "&#8377;" + roomcost;
+        }
+
+    </script>
+</head>
+
+<body class="container-fluid">
+    <header class=" ps-2 pe-2 bg-dark text-white">
+        <div class="d-flex justify-content-between me-2 pt-2 pe-4">
+            <div class="logo text-center ps-4 ms-4">
+                <h3><i>New Sunshine</i></h3>
+                Hotel & Resorts
+
+            </div>
+            <div>
+                <select name="Language" class="bg-dark text-white p-2 mt-3">
+
+
+                    <option value=""> Select Language </option>
+                    <option value="english"> English</option>
+                    <option value="hindi"> हिंदी</option>
+
+                </select>
+
+            </div>
+        </div>
+        <div class="nav-header">
+            <ul class="  d-flex justify-content-between mt-4 ">
+                <li><a href="#"> <span class="bi bi-house"></span> HOME</a></li>
+                <li><a href="#"><span class="bi bi-image"></span> HOTEL IMAGES</a></li>
+                <li><a href="#">OFFER'S</a></li>
+                <li><a href="#"><span class="bi bi-phone"></span> CONTACT US</a></li>
+                <li>
+                    <div class="input-group m-1">
+                        <input type="text"><span class="bi bi-search input-group-text "></span>
+                    </div>
+                </li>
+
+            </ul>
+
+
+        </div>
+
+    </header>
+    <section>
+        <div class="section-1">
+            <div>
+                <img src="../public/images/hotelname.jpg" alt="" width="100%" height="400px">
+            </div>
+            <div class="d-flex justify-content-center align-items-center bg-success border rounded-2 text-white">
+                <dl class="row p-4">
+                    <dt class="col-5">User Name :</dt>
+                    <dd><input type="text" class="form-control"></dd>
+                    <dt class="col-5 mt-2">Mobile no. :</dt>
+                    <dd><input type="number" name="mobile" class="form-control"></dd>
+
+                    <button class="btn btn-dark mt-4 " onclick="openclick()" data-bs-toggle="registerform"
+                        data-bs-target="#form">Continue To BOOK</button>
+                </dl>
+            </div>
+
+        </div>
+        <div class="registerform" id="form" style="display:none;">
+            <h2 class="text-center border border-dark mt-2 p-2">Hotel Registration Form</h2>
+            <div class="accordion" id="reg-form">
+                <div class="accordion-item border border-dark mt-1 mb-1">
+                    <div class="accordion-header">
+                        <button class="btn bg-dark text-white text-center border border-dark  w-100"
+                            data-bs-toggle="collapse" data-bs-target="#customer">Customer Info</button>
+
+                    </div>
+                    <div class="accordion-collapse collapse show" id="customer" data-bs-parent="#form">
+                        <div class="accordion-body">
+                            <dl class="row bg-light">
+                                <dt class="col-5 text-justify ">Customer Name :</dt>
+                                <dd class="col-5 text-center input-group-text"><input class="form-control w-75"
+                                        type="text" id="txtname"> text</dd>
+
+                                <dt class="col-5 text-justify ">Check in Dates :</dt>
+                                <dd class="col-5 text-center input-group-text "><input type="text"
+                                        class="form-control w-75" name="date" id="txtdate" placeholder="dd/mm/yy"> date</dd>
+
+                                <dt class="col-5 text-justify">Total No of Days :</dt>
+                                <dd class="col-5 text-center input-group-text"><input type="text"
+                                        class="form-control w-75" name="days" id="txtdays"> number</dd>
+
+                                <dt class="col-5 text-justify">Total No of Persons :</dt>
+                                <dd class="col-5 text-justify input-group-text"><input type="text"
+                                        class="form-control w-75" name="persons" id="txtpersons"> number</dd>
+                            </dl>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="accordion-item">
+
+                    <div class="accordion-header">
+                        <button class="btn bg-dark text-white text-center w-100" data-bs-toggle="collapse"
+                            data-bs-target="#room">Select Room Type</button>
+
+                    </div>
+                    <div class="accordion-collapse collapse show" id="room" data-bs-parent="#form">
+                        <div class="accordion-body row border border-dark mt-1 wb-1">
+                            <div class="col-6  text-center">
+                                <img src="../public/images/aws.jpg" class="border border-2 border-dark rounded-2 mb-2"
+                                    alt="" width="200px" height="200px">
+                                <h5><input type="radio" name="room" id="txtdelux" value="Delux Room"
+                                        class="form-check-input"> Delux Room</h5>
+                            </div>
+                            <div class="col-6  text-center">
+                                <img src="../public/images/aws.jpg" class="border border-2 border-dark mb-2 rounded-2"
+                                    alt="" width="200px" height="200px">
+                                <h5><input type="radio" name="room" id="txtsuite" value="Suite Room"
+                                        class="form-check-input"> Suite Room</h5>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <button class="btn bg-dark text-white w-100">Select Amenities </button>
+
+
+                    </div>
+                    <div class="accordion-collapse collapse show" id="amenities" data-bs-parent="#form">
+                        <div class="accordion-body row border border-dark mt-1 mb-1">
+                            <div class="col-6  text-center ">
+                                <img src="../public/images/aws.jpg" alt="" class="border border-2 border-dark rounded-2"
+                                    width="200px" height="200px">
+                                <h5><input type="checkbox" name="amenities-1" id="txtac" value="A/C"> A/C</h5>
+
+
+                            </div>
+                            <div class="col-6 text-center">
+                                <img src="../public/images/aws.jpg" alt="" class="border border-2 border-dark rounded-2"
+                                    width="200px" height="200px">
+                                <h5><input type="checkbox" name="amenities-2" id="txtlocker" value="Locker"> Locker</h5>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="accordian-item  ">
+                    <div class="accordion-header">
+                        <button class="btn text-white bg-dark w-100">Advance Amount</button>
+
+
+                    </div>
+                    <div class="accordion-collapse collapse show border border-dark mt-1 mb-1">
+                        <div class="accordion-body text-center m-4 ">
+                            <h5>Advance Amount : <input type="text" name="Amount" id="txtadvance" value="2000"></h5>
+
+                        </div>
+
+                    </div>
+                    
+                    
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header text-center">
+                        
+
+                            <button data-bs-target="#booking" data-bs-toggle="modal" class="ps-4 pe-4 pt-2 pb-2 fs-5 bg-dark text-white border border-dark rounded-2 mb-4 mt-2" onclick="registerclick()">Register</button>
+                        
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="modal fade" id="booking">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="text-center m-2">BOOKINS SUMMARY :-</h2>
+                    </div>
+                    <div class="modal-body">
+                        <dl>
+                            <dt>Customer Name :</dt>
+                            <dd id="lblname"></dd>
+
+                            <dt>Check in Date :</dt>
+                            <dd id="lbldate"></dd>
+
+                            <dt>Total No of Days :</dt>
+                            <dd id="lbldays"></dd>
+
+                            <dt>Total No of Persons :</dt>
+                            <dd id="lblpersons"></dd>
+
+                            <dt>Selected Room Typed :</dt>
+                            <dd id="lblroom"></dd>
+
+                            <dt>Selected Amenities :</dt>
+                            <dd id="lblamenities"></dd>
+
+                            <dt>Advance Amount :</dt>
+                            <dd id="lbladvance"></dd>
+
+                            <dt>Total Amount :</dt>
+                            <dd id="lbltotal"></dd>
+
+                            <dt>Remainig to Pay :</dt>
+                            <dd id="lblremain"></dd>
+
+                        </dl>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+
+</html>
